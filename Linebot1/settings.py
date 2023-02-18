@@ -21,11 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-_ts^@#8!**j(hhtv$dvtp^p7x*e72*y6#w7bi+5pdcady-a6s="
-
+LINE_CHANNEL_SECRET = '40f1cf548e209d5797babd1e10b3f401'
+LINE_CHANNEL_ACCESS_TOKEN = 'rycGk86wg9gUBjRDqrBD6Wxrll5rCp7qBF00qf+5QDuB8xZmnnLAMdepSF8xj8/q9zvcuNAzAMhfd2CkRZGLS2OCt0qpADCwjDNNRRnBA4+W7NpyLITwEvBucbLvJf2M3PdXaDkyNURqHIFlSgcIngdB04t89/1O/w1cDnyilFU='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -88,9 +89,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", },
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
 ]
 
 
