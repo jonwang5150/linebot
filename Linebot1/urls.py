@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import re_path as url
-#from django.conf.urls import url
 from bot import views
 
 urlpatterns = [
+    path('',views.index),
     url("^callback",views.callback),
+    path("admin/", admin.site.urls),
+    
 ]
