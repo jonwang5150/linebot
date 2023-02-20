@@ -33,14 +33,14 @@ def callback(request):
         for event in events:
             if isinstance(event, MessageEvent):
                 if isinstance(event.message,TextMessage):
+                    message,image_url=None,None
                     text=event.message.text
                     print(text)
                     if '電影' in text:
                         message='https://movies.yahoo.com.tw/'
                     elif '台中捷運' in text:
                         image_url='https://upload.wikimedia.org/wikipedia/commons/c/c0/Taichung_MRT_Planning_Route_Map.jpg'
-                        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image_url,
-                        preview_image_url=image_url))
+                        
                     elif '台北捷運' in text:
                         message='https://www.travel.taipei/Content/images/static/travel-tips/metrotaipeimap.jpg'
                     elif '早安' in text:
@@ -50,15 +50,20 @@ def callback(request):
                     else:
                         message=random.choice(words)
 
+                else:
+                    message='無法解析'
+
+                if message is not None:
                     line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage(text=message)
                 )
-                else:
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text='無法解析')
-                )
+                if image_url is not None:
+                    line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image_url,
+                        preview_image_url=image_url))
+
+
+
 
         return HttpResponse()
     else:
@@ -69,5 +74,4 @@ def lotto():
     numbers = sorted(random.sample(range(1, 50), 6))
     result = ' '.join(map(str, numbers))
     n = random.randint(1, 50)
-
     return f'{result} 特別號:{n}'
