@@ -52,18 +52,11 @@ def callback(request):
 
                 else:
                     message='無法解析'
-
-                if message is not None:
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text=message)
-                )
-                if image_url is not None:
-                    line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image_url,
-                        preview_image_url=image_url))
-
-
-
+                
+                messageObject=TextSendMessage(text=message) if message is not None else \
+                    ImageSendMessage(original_content_url=image_url,preview_image_url=image_url)
+                
+                line_bot_api.reply_message(event.reply_token,messageObject)
 
         return HttpResponse()
     else:
